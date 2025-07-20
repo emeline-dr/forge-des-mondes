@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@custom-variant dark ( @media (prefers-color-scheme: dark) );
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
     --color-text: #0C141A;
@@ -9,14 +9,18 @@
     --color-secondary: #96A3B4;
     --color-accent: #F9778A;
 
+    --color-accent-75: rgba(249, 119, 138, 0.75);
+
     --color-dark-text: #e7eef4;
     --color-dark-background: #00080a;
     --color-dark-primary: #91adc0;
     --color-dark-secondary: #4a5768;
     --color-dark-accent: #97075D;
 
+    --color-dark-accent-75: rgba(151, 7, 93, 0.75);
+
     --font-verdana: 'Verdana';
-    --font-major-mono-display: 'Major Mono Display';
+    --font-amarante: 'Amarante';
 }
 
 @font-face {
@@ -25,6 +29,6 @@
 }
 
 @font-face {
-    font-family: 'Major Mono Display';
-    src: url('/fonts/Major_Mono_Display/MajorMonoDisplay-Regular.ttf') format('truetype');
+    font-family: 'Amarante';
+    src: url('/fonts/Amarante/Amarante-Regular.ttf') format('truetype');
 }
