@@ -1,21 +1,15 @@
 'use client'
 
 import AnimatedText from "@/components/AnimatedText";
-import ThemeSwitch from '@/components/ThemeSwitch';
 
 export default function Login() {
     return (
-        <div className="h-screen w-full flex items-center justify-center bg-background dark:bg-dark-background">
-            <ThemeSwitch />
-            <div className="z-2 p-[40px] rounded-sm text-5xl uppercase font-amarante text-text dark:text-dark-text bg-accent dark:bg-dark-accent">
+        <div className="screenPage w-full flex items-center justify-center bg-secondary dark:bg-dark-secondary">
+            <div className="z-2 p-[40px] rounded-sm text-5xl uppercase font-amarante text-background dark:text-dark-background bg-primary dark:bg-dark-primary">
                 <h1>
                     <AnimatedText text="Connexion" />
                 </h1>
             </div>
-
-            <span className='absolute bottom-[8px] right-[8px] z-2 text-[8px] text-background dark:text-dark-text'>
-                Image créée par Freepik
-            </span>
         </div>
     );
 }

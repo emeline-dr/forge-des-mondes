@@ -8,9 +8,9 @@ import ThemeSwitch from '@/components/ThemeSwitch';
 export default function Home() {
 
   return (
-    <div className="h-screen w-full flex flex-col gap-[40px] items-center justify-center bg-accent dark:bg-dark-accent">
+    <div className="screenPage w-full flex flex-col gap-[40px] items-center justify-center bg-accent dark:bg-dark-accent">
       <ThemeSwitch />
-      <div className={`h-screen w-full absolute bg-[url('/images/planets-background.jpg')] dark:bg-[url('/images/planets-dark-bg.jpg')] bg-cover bg-center mix-blend-multiply`}></div>
+      <div className={`screenPage w-full absolute bg-[url('/images/planets-background.jpg')] dark:bg-[url('/images/planets-dark-bg.jpg')] bg-cover bg-center mix-blend-multiply`}></div>
 
       <div className="z-2 p-[40px] mx-[40px] rounded-sm text-5xl uppercase font-amarante text-text dark:text-dark-text bg-accent dark:bg-dark-accent">
         <h1 className="flex flex-wrap justify-center gap-x-[40px]">
