@@ -14,7 +14,7 @@ export default function Navbar() {
                 <div className='size-[32px] rounded-sm bg-background dark:bg-dark-text hover:invert'>
                     <Image
                         src="/images/fdm-logo.png"
-                        alt=""
+                        alt="Logo Forge des Mondes"
                         width="32"
                         height="32"
                     />

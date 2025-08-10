@@ -9,6 +9,8 @@
     --color-secondary: #96A3B4;
     --color-accent: #F9778A;
 
+    --color-primary-65:rgba(64, 92, 111, 0.65);
+
     --color-accent-75: rgba(249, 119, 138, 0.75);
 
     --color-dark-text: #e7eef4;
@@ -16,6 +18,8 @@
     --color-dark-primary: #91adc0;
     --color-dark-secondary: #4a5768;
     --color-dark-accent: #97075D;
+
+    --color-dark-primary-65: rgba(145, 173, 192, 0.65);
 
     --color-dark-accent-75: rgba(151, 7, 93, 0.75);
 
@@ -34,5 +38,5 @@
 }
 
 .screenPage {
-    height:calc(100vh - 64px)
+    min-height:calc(100vh - 64px)
 }
