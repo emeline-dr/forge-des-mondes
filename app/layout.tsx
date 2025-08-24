@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`text-verdana text-text dark:text-dark-text antialiased`}>
+      <body className={`font-verdana text-[13px] text-text dark:text-dark-text antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           {children}
