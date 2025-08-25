@@ -177,7 +177,7 @@ export function RegisterForm() {
                         <button
                             type="submit"
                             disabled={!canSubmit}
-                            className="font-amarante text-lg rounded-sm cursor-pointer bg-text text-accent dark:bg-dark-text dark:text-dark-accent hover:outline-[2px] hover:outline-accent dark:hover:outline-dark-accent w-full mt-[24px]"
+                            className="disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:outline-0 font-amarante text-lg rounded-sm cursor-pointer bg-text text-accent dark:bg-dark-text dark:text-dark-accent hover:outline-[2px] hover:outline-accent dark:hover:outline-dark-accent w-full mt-[24px]"
                         >
                             {isSubmitting ? '...' : "S'inscrire"}
                         </button>
