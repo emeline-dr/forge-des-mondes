@@ -26,7 +26,6 @@ export function RegisterForm() {
             password: '',
             passwordBis: '',
             email: '',
-
         },
         onSubmit: async ({ value }) => {
             console.log('Inscription en cours:', value);

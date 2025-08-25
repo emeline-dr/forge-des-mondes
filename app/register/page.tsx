@@ -30,7 +30,7 @@ export default function Register() {
             </div>
 
             <div className="lg:w-1/3 h-fit mx-auto mb-[40px] lg:mb-0 lg:mx-0 p-[40px] rounded-sm text-background dark:text-dark-text bg-primary-65 dark:bg-dark-primary-65">
-                <h1 className="font-amarante text-2xl text-center">
+                <h1 className="font-amarante text-5xl text-center">
                     <AnimatedText text="Nous" />
                     <span className="ms-[8px]">
                         <AnimatedText text="rejoindre" />
