@@ -37,6 +37,7 @@ export function RegisterForm() {
                 const response = await axios.post(API_URL, {
                     email: value.email,
                     password: value.password,
+                    confirmPassword: value.passwordBis,
                     username: value.username,
                 }, {
                     headers: {
@@ -69,7 +70,16 @@ export function RegisterForm() {
         }}>
             <div>
                 {/* Pseudo */}
-                <form.Field name="username">
+                <form.Field
+                    name="username"
+                    validators={{
+                        onChange: ({ value }) => {
+                            if (!value || value.trim() === "") {
+                                return "Le pseudo est obligatoire";
+                            }
+                        }
+                    }}
+                >
                     {(field) => (
                         <>
                             <label htmlFor={field.name}>Pseudo</label><br />
@@ -87,7 +97,16 @@ export function RegisterForm() {
                 </form.Field>
 
                 {/* Email */}
-                <form.Field name="email">
+                <form.Field
+                    name="email"
+                    validators={{
+                        onChange: ({ value }) => {
+                            if (!value || value.trim() === "") {
+                                return "L'adresse mail est obligatoire";
+                            }
+                        }
+                    }}
+                >
                     {(field) => (
                         <>
                             <label htmlFor={field.name}>Adresse mail</label><br />
@@ -123,7 +142,17 @@ export function RegisterForm() {
                 </form.Field>
 
                 {/* Mot de passe bis */}
-                <form.Field name="passwordBis">
+                <form.Field
+                    name="passwordBis"
+                    validators={{
+                        onChange: ({ value, fieldApi }) => {
+                            if (value !== fieldApi.form.getFieldValue("password")) {
+                                return "Les mots de passe ne correspondent pas";
+                            }
+                            return undefined;
+                        }
+                    }}
+                >
                     {(field) => (
                         <>
                             <label htmlFor={field.name}>Vérification du mot de passe</label><br />
@@ -141,7 +170,7 @@ export function RegisterForm() {
                 </form.Field>
 
                 {/* Message d'erreur */}
-                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                {errorMessage && <p className="text-red-700">{errorMessage}</p>}
 
                 <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
                     {([canSubmit, isSubmitting]) => (
