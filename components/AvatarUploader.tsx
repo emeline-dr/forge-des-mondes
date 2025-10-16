@@ -1,12 +1,9 @@
 "use client";
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
+import Cookies from "js-cookie";
 
-interface AvatarUploaderProps {
-    id: string; // l'id de l'utilisateur connecté
-}
-
-export default function AvatarUploader({ id }: AvatarUploaderProps) {
+export default function AvatarUploader() {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
@@ -16,36 +13,43 @@ export default function AvatarUploader({ id }: AvatarUploaderProps) {
 
         setLoading(true);
 
-        const fileExt = file.name.split(".").pop();
-        const fileName = `${Date.now()}.${fileExt}`;
-        const filePath = `avatars/${fileName}`;
+        try {
+            const fileExt = file.name.split(".").pop();
+            const fileName = `${Date.now()}.${fileExt}`;
+            const filePath = `avatars/${fileName}`;
 
-        // 1️⃣ Upload dans Supabase Storage
-        const { error } = await supabase.storage
-            .from("avatars")
-            .upload(filePath, file);
+            const { error: uploadError } = await supabase.storage
+                .from("avatars")
+                .upload(filePath, file);
 
-        if (error) {
-            console.error("Erreur d'upload :", error);
+            if (uploadError) throw uploadError;
+
+            const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
+            const publicUrl = data.publicUrl;
+
+            const token = Cookies.get("authToken");
+            if (!token) throw new Error("Utilisateur non authentifié");
+
+            const res = await fetch("https://forgedesmondes-back.onrender.com/users/avatar", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify({ avatarUrl: publicUrl }),
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || "Erreur lors de la mise à jour de l'avatar");
+            }
+
+            setImageUrl(publicUrl);
+        } catch (err: any) {
+            console.error("Erreur avatar :", err.message);
+        } finally {
             setLoading(false);
-            return;
         }
-
-        const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
-        const publicUrl = data.publicUrl;
-
-        const res = await fetch("http://forgedesmondes-back.onrender.com/users/avatar", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, avatarUrl: publicUrl }),
-        });
-
-        if (!res.ok) {
-            console.error("Erreur lors de la mise à jour de l'avatar en DB");
-        }
-
-        setImageUrl(publicUrl);
-        setLoading(false);
     }
 
     return (
