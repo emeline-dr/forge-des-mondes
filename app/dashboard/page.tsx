@@ -1,4 +1,5 @@
 import AnimatedText from "@/components/AnimatedText";
+import AvatarUploader from "@/components/AvatarUploader";
 
 export default async function Dashboard() {
     return (
@@ -7,6 +8,7 @@ export default async function Dashboard() {
                 <h1 className="text-5xl">
                     <AnimatedText text="Accueil connecté !" />
                 </h1>
+                <AvatarUploader />
             </div>
         </div>
     );

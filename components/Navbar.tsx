@@ -43,9 +43,14 @@ export default function Navbar() {
                 </Link>}
 
             {pathname == "/dashboard" &&
-                <button onClick={logout} type="button" className='h-[32px] px-[16px] rounded-sm cursor-pointer outline-1 outline-text dark:outline-dark-text hover:bg-text hover:text-accent dark:hover:bg-dark-text dark:hover:text-dark-accent'>
-                    Se déconnecter
-                </button>}
+                <div className='flex flex-wrap justify-between gap-[8px]'>
+                    <button type="button" className='h-[32px] px-[16px] rounded-sm cursor-pointer outline-1 outline-text dark:outline-dark-text hover:bg-text hover:text-accent dark:hover:bg-dark-text dark:hover:text-dark-accent'>
+                        Mon profil
+                    </button>
+                    <button onClick={logout} type="button" className='h-[32px] px-[16px] rounded-sm cursor-pointer outline-1 outline-text dark:outline-dark-text hover:bg-text hover:text-accent dark:hover:bg-dark-text dark:hover:text-dark-accent'>
+                        Se déconnecter
+                    </button>
+                </div>}
 
             <ThemeSwitch />
         </nav>

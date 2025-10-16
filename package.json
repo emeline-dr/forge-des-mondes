@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.75.0",
     "@tanstack/react-form": "^1.19.2",
     "animejs": "^4.0.2",
     "axios": "^1.11.0",

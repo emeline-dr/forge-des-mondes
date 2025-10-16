@@ -36,7 +36,7 @@ export function RegisterForm() {
                 const response = await axios.post(API_URL, {
                     email: value.email,
                     password: value.password,
-                    confirmPassword: value.passwordBis,
+                    passwordBis: value.passwordBis,
                     username: value.username,
                 }, {
                     headers: {
