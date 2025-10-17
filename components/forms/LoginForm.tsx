@@ -43,12 +43,15 @@ export function LoginForm() {
                 const data = response.data;
 
                 if (data.token) {
-                    const oneHourFromNow = new Date(new Date().getTime() + 60 * 60 * 1000);
-                    Cookies.set('authToken', data.jwt, {
-                        expires: oneHourFromNow, path: '/',
-                        secure: true
-                    })
+                    const oneHourFromNow = new Date(Date.now() + 60 * 60 * 1000);
+                    Cookies.set('authToken', data.token, {
+                        expires: oneHourFromNow,
+                        path: '/',
+                        secure: true,
+                        sameSite: 'strict'
+                    });
                 }
+
 
                 window.location.href = "/dashboard";
             } catch (err: unknown) {

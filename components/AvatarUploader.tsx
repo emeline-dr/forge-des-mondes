@@ -1,11 +1,33 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import Cookies from "js-cookie";
 
 export default function AvatarUploader() {
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        async function fetchAvatar() {
+            try {
+                const token = Cookies.get("authToken");
+                if (!token) return;
+
+                const res = await fetch("https://forgedesmondes-back.onrender.com/users/me", {
+                    headers: { "Authorization": `Bearer ${token}` },
+                });
+
+                if (!res.ok) throw new Error("Impossible de récupérer le profil utilisateur");
+                const user = await res.json();
+
+                if (user.avatar_url) setImageUrl(user.avatar_url);
+            } catch (err) {
+                console.error("Erreur lors du chargement de l'avatar :", err);
+            }
+        }
+
+        fetchAvatar();
+    }, []);
 
     async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];
