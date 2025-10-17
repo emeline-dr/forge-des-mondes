@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import { useForm } from "@tanstack/react-form"
 import type { AnyFieldApi } from "@tanstack/react-form"
@@ -19,6 +19,14 @@ function FieldInfo({ field }: { field: AnyFieldApi }) {
 
 export function RegisterForm() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [avatarDefault, setAvatarDefault] = useState<string>();
+
+    useEffect(() => {
+        const randomNumber = Math.floor(Math.random() * 8);
+        const baseURL = "https://znqhhrasldgxrrejallt.supabase.co/storage/v1/object/public/avatars/default";
+        const newAvatar = `${baseURL}/planete_${randomNumber + 1}.png`;
+        setAvatarDefault(newAvatar);
+    }, []);
 
     const form = useForm({
         defaultValues: {
@@ -38,6 +46,7 @@ export function RegisterForm() {
                     password: value.password,
                     passwordBis: value.passwordBis,
                     username: value.username,
+                    avatarDefault: avatarDefault,
                 }, {
                     headers: {
                         'Content-Type': 'application/json',
